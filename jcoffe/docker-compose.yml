@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  Hobbys:
+    container_name: jcoffeeapp
+    image: openjdk:17
+    command: > 
+      java -jar /usr/local/lib/jcoffeeapp/jcoffee-3.2.0.jar
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - jcoffee
+    volumes:
+      - /home/azureuser/app/backend/target:/usr/local/lib/jcoffeeapp
+    restart: always
+    environment:
+      SERVICE_NAME: jcoffee
+networks:
+  jcoffee:
+    external: true
