@@ -29,5 +29,10 @@ public class Cafe {
 
     public void update(Cafe cafe) {
         this.setNombre(cafe.getNombre());
+        this.setDescripcion(cafe.getDescripcion());
+        this.setPrecio(cafe.getPrecio());
+        this.setURLImagen(cafe.getURLImagen());
+        this.setActivo(cafe.getActivo());
+        this.setFamiliaId(cafe.getFamiliaId());
     }
 }

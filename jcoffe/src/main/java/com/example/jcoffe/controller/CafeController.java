@@ -66,6 +66,7 @@ public class CafeController {
         return ResponseEntity.noContent().build();
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("familia/{familiaId}")
     public ResponseEntity<?> getCafeByFamilia(@PathVariable Integer familiaId){
         List<Cafe> listaCafes = cafeService.getCafeByFamilia(familiaId);

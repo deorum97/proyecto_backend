@@ -1,6 +1,5 @@
 package com.example.jcoffe.controller;
 
-import com.example.jcoffe.DTO.PedidoDto;
 import com.example.jcoffe.model.Pedido;
 import com.example.jcoffe.service.PedidoService;
 import com.google.gson.Gson;
@@ -8,7 +7,6 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +34,8 @@ public class PedidoController {
         }
     }
 
-    @PostMapping("{create}")
+    @CrossOrigin(origins = "http://localhost:5173")
+    @PostMapping("create")
     public ResponseEntity<?> createPedido(@RequestBody Pedido ped){
         try{
             Pedido pedido = pedidoService.createPedido(ped);
@@ -46,6 +45,24 @@ public class PedidoController {
                     "No se ha podido crear el pedido"
             );
         }
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<?> updatePedido(@RequestBody Pedido ped,@PathVariable Integer id){
+        try{
+            Pedido pedido = pedidoService.updatePedido(ped,id);
+            return ResponseEntity.ok().body(pedido);
+        }catch (EntityNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    gson.toJson(e.getMessage())
+            );
+        }
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deletePedido(@PathVariable Integer id){
+        pedidoService.deletePedido(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("all")

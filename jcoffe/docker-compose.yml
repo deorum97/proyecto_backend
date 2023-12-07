@@ -4,7 +4,7 @@ services:
     container_name: jcoffeeapp
     image: openjdk:17
     command: > 
-      java -jar /usr/local/lib/jcoffeeapp/jcoffee-3.2.0.jar
+      java -jar /usr/local/lib/jcoffeeapp/jcoffe-3.2.0.jar
     expose:
       - 8080
     ports:
@@ -12,7 +12,7 @@ services:
     networks:
       - jcoffee
     volumes:
-      - /home/azureuser/app/backend/target:/usr/local/lib/jcoffeeapp
+      - /home/azureuser/app/backend:/usr/local/lib/jcoffeeapp
     restart: always
     environment:
       SERVICE_NAME: jcoffee

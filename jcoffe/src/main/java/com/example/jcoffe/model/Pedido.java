@@ -25,4 +25,8 @@ public class Pedido {
     //private Double precio;
     //private String metodoPago;
     private Boolean entregado;
+
+    public void update(Pedido ped) {
+        this.setEntregado(ped.getEntregado());
+    }
 }
